@@ -14,6 +14,10 @@
 		434FBECD1FDED99E00C14CB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 434FBECB1FDED99E00C14CB9 /* LaunchScreen.storyboard */; };
 		434FBEDC1FDEDA6500C14CB9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434FBEDB1FDEDA6500C14CB9 /* CoreDataManager.swift */; };
 		434FBEE01FDEDF2200C14CB9 /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 434FBEDE1FDEDF2200C14CB9 /* Notes.xcdatamodeld */; };
+		43980D421FE02AE3008CFA5D /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43980D411FE02AE3008CFA5D /* AddNoteViewController.swift */; };
+		43980D441FE03516008CFA5D /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43980D431FE03516008CFA5D /* NoteTableViewCell.swift */; };
+		43AF46861FE2C63F00B652BF /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AF46851FE2C63F00B652BF /* Note.swift */; };
+		43AF46881FE2CB2800B652BF /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AF46871FE2CB2800B652BF /* NoteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		434FBECE1FDED99E00C14CB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		434FBEDB1FDEDA6500C14CB9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		434FBEDF1FDEDF2200C14CB9 /* Notes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notes.xcdatamodel; sourceTree = "<group>"; };
+		43980D411FE02AE3008CFA5D /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddNoteViewController.swift; path = "Notes/View Controllers/AddNoteViewController.swift"; sourceTree = SOURCE_ROOT; };
+		43980D431FE03516008CFA5D /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		43AF46851FE2C63F00B652BF /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		43AF46871FE2CB2800B652BF /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +88,9 @@
 		434FBED51FDED9C500C14CB9 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				43AF46871FE2CB2800B652BF /* NoteViewController.swift */,
+				43980D411FE02AE3008CFA5D /* AddNoteViewController.swift */,
+				43980D431FE03516008CFA5D /* NoteTableViewCell.swift */,
 				434FBED61FDED9D600C14CB9 /* Root View Controller */,
 			);
 			path = "View Controllers";
@@ -121,9 +132,18 @@
 		434FBEDD1FDEDF0900C14CB9 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				43AF46841FE2C63500B652BF /* Extension */,
 				434FBEDE1FDEDF2200C14CB9 /* Notes.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		43AF46841FE2C63500B652BF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				43AF46851FE2C63F00B652BF /* Note.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,10 +218,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43AF46881FE2CB2800B652BF /* NoteViewController.swift in Sources */,
 				434FBEDC1FDEDA6500C14CB9 /* CoreDataManager.swift in Sources */,
 				434FBEC51FDED99E00C14CB9 /* ViewController.swift in Sources */,
+				43AF46861FE2C63F00B652BF /* Note.swift in Sources */,
 				434FBEC31FDED99E00C14CB9 /* AppDelegate.swift in Sources */,
+				43980D421FE02AE3008CFA5D /* AddNoteViewController.swift in Sources */,
 				434FBEE01FDEDF2200C14CB9 /* Notes.xcdatamodeld in Sources */,
+				43980D441FE03516008CFA5D /* NoteTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +369,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = FPT.Notes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -360,7 +384,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = FPT.Notes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
