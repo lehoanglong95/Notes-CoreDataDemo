@@ -26,8 +26,9 @@ class CategoriesViewController: UIViewController {
             fatalError("Unable to access managed Object Context")
         }
         let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Category.name), ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         let fetchedResults = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResults.delegate = self
         return fetchedResults
     }()
     
@@ -40,8 +41,15 @@ class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         messageLabel.text = "You dont have any categories"
         fetchRequest()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateView()
     }
     
     private func updateView() {
@@ -57,22 +65,22 @@ class CategoriesViewController: UIViewController {
             print("Can not fetch Request with \(error)")
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = segue.identifier else { return }
-        switch identifier {
-        case Segue.AddCategory:
-            print("abc")
-        case Segue.Category:
-            print("xyz")
-        default:
-            break
-        }
-    }
 
+    @IBAction func addCategory(_ sender: Any) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let addCategoryVc = storyBoard.instantiateViewController(withIdentifier: "AddCategoryViewController") as! AddCategoryViewController
+        addCategoryVc.managedObjectContext = self.note?.managedObjectContext
+        navigationController?.pushViewController(addCategoryVc, animated: true)
+    }
 }
 
 extension CategoriesViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        guard let sections = fetchedResultsController.sections else { return 0 }
+        return sections.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let section = fetchedResultsController.sections?[section] else {
             return 0
@@ -95,6 +103,56 @@ extension CategoriesViewController: UITableViewDataSource {
     private func configure(_ cell: CategoryTableViewCell, at indexPath: IndexPath) {
         let category: Category = fetchedResultsController.object(at: indexPath)
         cell.name.text = category.name
+        if note?.category == category {
+            cell.name.textColor = .bitterSweet
+        } else {
+            cell.name.textColor = .black
+        }
+    }
+}
+
+extension CategoriesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let category = fetchedResultsController.object(at: indexPath)
+        note?.category = category
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+extension CategoriesViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
     }
     
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+        
+        updateView()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch (type) {
+        case .insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .fade)
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        case .update:
+            if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) as? CategoryTableViewCell {
+                configure(cell, at: indexPath)
+            }
+        case .move:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .fade)
+            }
+        }
+    }
 }
