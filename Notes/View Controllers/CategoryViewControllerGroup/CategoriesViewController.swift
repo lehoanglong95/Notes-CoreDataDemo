@@ -90,6 +90,7 @@ extension CategoriesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell") as! CategoryTableViewCell
+        cell.accessoryType = .detailDisclosureButton
         configure(cell, at: indexPath)
         return cell
     }
@@ -103,11 +104,12 @@ extension CategoriesViewController: UITableViewDataSource {
     private func configure(_ cell: CategoryTableViewCell, at indexPath: IndexPath) {
         let category: Category = fetchedResultsController.object(at: indexPath)
         cell.name.text = category.name
-        if note?.category == category {
-            cell.name.textColor = .bitterSweet
-        } else {
-            cell.name.textColor = .black
-        }
+        cell.name.textColor = category.color
+//        if note?.category == category {
+//            cell.name.textColor = .bitterSweet
+//        } else {
+//            cell.name.textColor = .black
+//        }
     }
 }
 
@@ -116,6 +118,13 @@ extension CategoriesViewController: UITableViewDelegate {
         let category = fetchedResultsController.object(at: indexPath)
         note?.category = category
         navigationController?.popViewController(animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let categoryVc = storyBoard.instantiateViewController(withIdentifier: "CategoryViewController") as! CategoryViewController
+        categoryVc.category = fetchedResultsController.object(at: indexPath)
+        navigationController?.pushViewController(categoryVc, animated: true)
     }
 }
 

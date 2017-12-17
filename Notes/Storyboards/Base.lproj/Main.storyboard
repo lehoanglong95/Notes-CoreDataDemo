@@ -272,10 +272,62 @@
             </objects>
             <point key="canvasLocation" x="1464.8" y="1614.2428785607199"/>
         </scene>
+        <!--Color View Controller-->
+        <scene sceneID="xHB-t5-vok">
+            <objects>
+                <viewController storyboardIdentifier="ColorViewController" id="1bv-ts-Iex" customClass="ColorViewController" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ym5-44-8hy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gxQ-g6-1Pe">
+                                <rect key="frame" x="14" y="20" width="347" height="31"/>
+                                <connections>
+                                    <action selector="colorDidChangeWithSender:" destination="1bv-ts-Iex" eventType="valueChanged" id="Kzk-hh-ezV"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="C1j-eN-23s">
+                                <rect key="frame" x="14" y="66" width="347" height="31"/>
+                                <connections>
+                                    <action selector="colorDidChangeWithSender:" destination="1bv-ts-Iex" eventType="valueChanged" id="PVh-oJ-SlZ"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Vr-fW-nTn">
+                                <rect key="frame" x="14" y="112" width="347" height="31"/>
+                                <connections>
+                                    <action selector="colorDidChangeWithSender:" destination="1bv-ts-Iex" eventType="valueChanged" id="DW7-j1-NoS"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gxQ-g6-1Pe" firstAttribute="leading" secondItem="AiH-b6-9Gi" secondAttribute="leading" constant="16" id="4Wy-AB-KzJ"/>
+                            <constraint firstItem="AiH-b6-9Gi" firstAttribute="trailing" secondItem="gxQ-g6-1Pe" secondAttribute="trailing" constant="16" id="EfC-zW-NxR"/>
+                            <constraint firstItem="8Vr-fW-nTn" firstAttribute="top" secondItem="C1j-eN-23s" secondAttribute="bottom" constant="16" id="K23-O9-Ci8"/>
+                            <constraint firstItem="AiH-b6-9Gi" firstAttribute="trailing" secondItem="C1j-eN-23s" secondAttribute="trailing" constant="16" id="bSd-B6-cxN"/>
+                            <constraint firstItem="gxQ-g6-1Pe" firstAttribute="top" secondItem="AiH-b6-9Gi" secondAttribute="top" id="deN-ra-1pF"/>
+                            <constraint firstItem="C1j-eN-23s" firstAttribute="top" secondItem="gxQ-g6-1Pe" secondAttribute="bottom" constant="16" id="gop-jy-u89"/>
+                            <constraint firstItem="C1j-eN-23s" firstAttribute="leading" secondItem="AiH-b6-9Gi" secondAttribute="leading" constant="16" id="kAZ-m1-ufB"/>
+                            <constraint firstItem="AiH-b6-9Gi" firstAttribute="trailing" secondItem="8Vr-fW-nTn" secondAttribute="trailing" constant="16" id="oCy-EU-A31"/>
+                            <constraint firstItem="8Vr-fW-nTn" firstAttribute="leading" secondItem="AiH-b6-9Gi" secondAttribute="leading" constant="16" id="rxL-u1-tGw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="AiH-b6-9Gi"/>
+                    </view>
+                    <connections>
+                        <outlet property="blueSlider" destination="C1j-eN-23s" id="e4D-EK-CrH"/>
+                        <outlet property="colorView" destination="Ym5-44-8hy" id="uQo-K6-Pnz"/>
+                        <outlet property="greenSlider" destination="8Vr-fW-nTn" id="CzH-uB-uTI"/>
+                        <outlet property="redSlider" destination="gxQ-g6-1Pe" id="LpE-7g-JZX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FWG-sm-dEW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2287" y="2340"/>
+        </scene>
         <!--Category View Controller-->
         <scene sceneID="8it-vX-ITy">
             <objects>
-                <viewController id="kCh-BV-lsc" customClass="CategoryViewController" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoryViewController" id="kCh-BV-lsc" customClass="CategoryViewController" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cvi-Lf-FhV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -286,15 +338,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uv9-Fs-Slr">
+                                <rect key="frame" x="152" y="58" width="70" height="30"/>
+                                <state key="normal" title="Pick Color"/>
+                                <connections>
+                                    <action selector="pickColor:" destination="kCh-BV-lsc" eventType="touchUpInside" id="CCw-ED-JME"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="uv9-Fs-Slr" firstAttribute="centerX" secondItem="Cvi-Lf-FhV" secondAttribute="centerX" id="13n-wJ-4Y7"/>
                             <constraint firstItem="aeg-P2-B9s" firstAttribute="leading" secondItem="fb9-fA-CWE" secondAttribute="leading" constant="16" id="GFy-Iw-G5d"/>
+                            <constraint firstItem="uv9-Fs-Slr" firstAttribute="top" secondItem="aeg-P2-B9s" secondAttribute="bottom" constant="8" id="IJ9-at-Lsz"/>
                             <constraint firstItem="fb9-fA-CWE" firstAttribute="trailing" secondItem="aeg-P2-B9s" secondAttribute="trailing" constant="16" id="jHT-ow-9ma"/>
                             <constraint firstItem="aeg-P2-B9s" firstAttribute="top" secondItem="fb9-fA-CWE" secondAttribute="top" id="v78-Sg-Mva"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fb9-fA-CWE"/>
                     </view>
+                    <connections>
+                        <outlet property="categoryNameTextField" destination="aeg-P2-B9s" id="BeS-kg-dEN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHz-0d-S9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

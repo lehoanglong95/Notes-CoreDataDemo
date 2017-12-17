@@ -10,26 +10,37 @@ import UIKit
 
 class CategoryViewController: UIViewController {
 
+    @IBOutlet weak var categoryNameTextField: UITextField!
+    
+    var category: Category?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        setupView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func setupView() {
+        guard let category = category else { return }
+        categoryNameTextField.text = category.name
     }
-    */
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let name = categoryNameTextField.text, !name.isEmpty else { return }
+        category?.name = name
+    }
 
+    @IBAction func pickColor(_ sender: Any) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let colorVc = storyBoard.instantiateViewController(withIdentifier: "ColorViewController") as! ColorViewController
+        colorVc.delegate = self
+        colorVc.color = category?.color ?? . white
+        navigationController?.pushViewController(colorVc, animated: true)
+    }
+}
+
+extension CategoryViewController: ColorViewControllerDelegate {
+    func controller(_ controller: ColorViewController, didPick color: UIColor) {
+        category?.color = color
+    }
 }
