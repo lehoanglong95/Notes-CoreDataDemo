@@ -11,8 +11,14 @@ import CoreData
 final class CoreDataManager {
     private let modelName: String
     
+    private lazy var privateManagedObjectContext: NSManagedObjectContext = {
+       let managedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator
+        return managedObjectContext
+    }()
+    
     private(set) lazy var managedObjectContext: NSManagedObjectContext = {
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator
         return managedObjectContext
     }()

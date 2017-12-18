@@ -9,14 +9,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Notes/View Controllers/CategoryViewControllerGroup/CategoriesViewController.swift"
-            timestampString = "535221213.098111"
+            filePath = "Notes/View Controllers/CategoryViewControllerGroup/ColorViewController.swift"
+            timestampString = "535303782.142868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "viewWillDisappear(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Notes.ColorViewController.viewWillDisappear(Swift.Bool) -&gt; ()"
+                  moduleName = "Notes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/LongLH/Desktop/XCode/Notes/Notes/View%20Controllers/CategoryViewControllerGroup/ColorViewController.swift"
+                  timestampString = "535306494.965414"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "179">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; __ObjC.UIColor in Notes.ColorViewController.viewWillDisappear(Swift.Bool) -&gt; ()"
+                  moduleName = "Notes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/LongLH/Desktop/XCode/Notes/Notes/View%20Controllers/CategoryViewControllerGroup/ColorViewController.swift"
+                  timestampString = "535306494.966895"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

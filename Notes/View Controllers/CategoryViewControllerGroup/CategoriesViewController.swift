@@ -104,7 +104,11 @@ extension CategoriesViewController: UITableViewDataSource {
     private func configure(_ cell: CategoryTableViewCell, at indexPath: IndexPath) {
         let category: Category = fetchedResultsController.object(at: indexPath)
         cell.name.text = category.name
-        cell.name.textColor = category.color
+        if category.colorAsHex == "FFFFFF" {
+            cell.name.textColor = UIColor.darkText
+        } else {
+            cell.name.textColor = category.color
+        }
 //        if note?.category == category {
 //            cell.name.textColor = .bitterSweet
 //        } else {

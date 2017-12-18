@@ -358,6 +358,7 @@
                     </view>
                     <connections>
                         <outlet property="categoryNameTextField" destination="aeg-P2-B9s" id="BeS-kg-dEN"/>
+                        <outlet property="pickColoButton" destination="uv9-Fs-Slr" id="Aap-W1-nDR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHz-0d-S9h" userLabel="First Responder" sceneMemberID="firstResponder"/>

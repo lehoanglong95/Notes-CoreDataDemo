@@ -10,6 +10,7 @@ import UIKit
 
 class CategoryViewController: UIViewController {
 
+    @IBOutlet weak var pickColoButton: UIButton!
     @IBOutlet weak var categoryNameTextField: UITextField!
     
     var category: Category?
@@ -34,7 +35,7 @@ class CategoryViewController: UIViewController {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let colorVc = storyBoard.instantiateViewController(withIdentifier: "ColorViewController") as! ColorViewController
         colorVc.delegate = self
-        colorVc.color = category?.color ?? . white
+        colorVc.color = (category?.color)!
         navigationController?.pushViewController(colorVc, animated: true)
     }
 }
@@ -42,5 +43,6 @@ class CategoryViewController: UIViewController {
 extension CategoryViewController: ColorViewControllerDelegate {
     func controller(_ controller: ColorViewController, didPick color: UIColor) {
         category?.color = color
+        pickColoButton.tintColor = color
     }
 }
